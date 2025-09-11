@@ -27,7 +27,7 @@ Dieses Projekt beschreibt ein System für eine **Benutzer-App** und eine **Resta
 
 - **Codeeingabe**
   - Eingabe von Rechnungscodes
-  - Validierung (gültig/ungültig, bereits eingelöst)
+  - Validierung (gültig/ungültig)
 
 ---
 
