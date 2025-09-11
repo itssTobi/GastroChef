@@ -1,11 +1,8 @@
 # GastroChef
 
-## Anforderungsmanagement 
-
-# Punkte- & Treuesystem
-
 Dieses Projekt beschreibt ein System für eine **Benutzer-App** und eine **Restaurant-Webübersicht** zur Verwaltung von Punkten, Bestellungen und Rechnungscodes.
 
+## Anforderungsmanagement 
 ---
 
 ## Rollen
