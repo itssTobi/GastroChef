@@ -48,3 +48,15 @@ Dieses Projekt beschreibt ein System für eine **Benutzer-App** und eine **Resta
 ## Nicht-funktionale Anforderungen
 - **Sicherheit**
   - Einmalige Rechnungscodes
+
+## Techstack:
+
+| Ebene                   | Technologie                                    |
+|--------------------------|-----------------------------------------------|
+| **Backend**              | Spring Boot 3 (Java 21), Spring Web (REST), Spring Data JPA, Spring Security |
+| **Datenbank**            | H2 (In-Memory oder File-Modus)                |
+| **ORM / Mapping**        | JPA/Hibernate, Lombok                         |
+| **API-Dokumentation**    | OpenAPI (springdoc) – optional                |
+| **Frontend Benutzer-App**| React Native (Expo) oder Flutter              |
+| **Frontend Admin-Panel** | React (Next.js) oder Angular                  |
+| **Build / Tools**        | Maven oder Gradle, JUnit 5, Spring Boot Test  |
