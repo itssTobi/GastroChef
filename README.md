@@ -51,12 +51,11 @@ Dieses Projekt beschreibt ein System für eine **Benutzer-App** und eine **Resta
 
 ## Techstack:
 
-| Ebene                   | Technologie                                    |
+| Ebene                    | Technologie                                   |
 |--------------------------|-----------------------------------------------|
-| **Backend**              | Spring Boot 3 (Java 21), Spring Web (REST), Spring Data JPA, Spring Security |
-| **Datenbank**            | H2 (In-Memory oder File-Modus)                |
-| **ORM / Mapping**        | JPA/Hibernate, Lombok                         |
-| **API-Dokumentation**    | OpenAPI (springdoc) – optional                |
-| **Frontend Benutzer-App**| React Native (Expo) oder Flutter              |
-| **Frontend Admin-Panel** | React (Next.js) oder Angular                  |
-| **Build / Tools**        | Maven oder Gradle, JUnit 5, Spring Boot Test  |
+| **Backend**              | Spring Boot                                   |
+| **Datenbank**            | H2                                            |
+| **ORM / Mapping**        | JPA/Hibernate                                 |
+| **Frontend Benutzer-App**| React Native                                  |
+| **Frontend Admin-Panel** | React (Next.js)                               |
+| **Build / Tools**        | Maven, JUnit 5, Spring Boot Test              |
