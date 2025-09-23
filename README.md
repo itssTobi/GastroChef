@@ -3,11 +3,11 @@
 Dieses Projekt beschreibt ein System für eine **Benutzer-App** und eine **Restaurant-Webübersicht** zur Verwaltung von Punkten, Bestellungen und Rechnungscodes.
 
 ### Team 
-Gutmann
-Fellegger
-Hänsler
-Eichelberger
-Moser
+- Gutmann
+- Fellegger
+- Hänsler
+- Eichelberger
+- Moser
 
 ## Anforderungsmanagement 
 ---
