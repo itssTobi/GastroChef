@@ -48,3 +48,14 @@ Dieses Projekt beschreibt ein System für eine **Benutzer-App** und eine **Resta
 ## Nicht-funktionale Anforderungen
 - **Sicherheit**
   - Einmalige Rechnungscodes
+
+## Techstack:
+
+| Ebene                    | Technologie                                   |
+|--------------------------|-----------------------------------------------|
+| **Backend**              | Spring Boot                                   |
+| **Datenbank**            | H2                                            |
+| **ORM / Mapping**        | JPA/Hibernate                                 |
+| **Frontend Benutzer-App**| React Native                                  |
+| **Frontend Admin-Panel** | React (Next.js)                               |
+| **Build / Tools**        | Maven, JUnit 5, Spring Boot Test              |
