@@ -29,8 +29,10 @@ Dieses Projekt beschreibt ein System für eine **Benutzer-App** und eine **Resta
 ## Funktionale Anforderungen
 
 ### Benutzer-App
-- **Anmelden**
-  *Als Benutzer möchte ich mich mit meinem selbst erstellten Konto anmelden können um die Funktionen abzurufen.*
+
+- **Anmeldung**  
+   *Als Benutzer möchte ich mich mit meinem selbst erstellten Konto anmelden können um die Funktionen nutzen zu können.*
+  
 - **Punkteübersicht anzeigen**  
    *Als Benutzer möchte ich meine aktuellen ChefPoints in der App sehen, um jederzeit zu wissen, wie viele Punkte ich bereits gesammelt habe.*
 
