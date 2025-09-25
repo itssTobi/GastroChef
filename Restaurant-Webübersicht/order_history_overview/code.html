@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Foodie - Admin Orders</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Work+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1193d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101c22",
+          },
+          fontFamily: {
+            "display": ["Work Sans"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 dark:border-primary/30 px-10 py-3">
+<div class="flex items-center gap-4 text-slate-800 dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path></svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Foodie</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Menu</a>
+<a class="text-sm font-bold text-primary" href="#">Orders</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Customers</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Analytics</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-full size-10 bg-primary/10 text-primary hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined">
+              notifications
+            </span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLUHCtZI1mvAsU2I5Q8zTgLm25E0huAd-b9g_k8rO4bgiYO_SPKkuDUjatUA-hWLpc8fFP6FOi9-jI4p_uzJt2PNf9saPCADXx-Gj_7-4CdsMOpq7rpvyER52ob6IT9lo-uMg9bIpmFpibJyQgCt0EKuqcL8RQtWwWvVbP7mFGv0_X4ArIb31GzbxvEW6yM5Sm2yjLDtj9mW6h2UcEGG4888e7l6KfaaOFeHrBvEyjXoS6bUYQNjyfpM2ui2Cj-akn24D4psuFNY2O");'></div>
+</div>
+</header>
+<main class="flex-1 px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-7xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Orders</h1>
+<p class="mt-1 text-slate-500 dark:text-slate-400">Manage and track all orders placed by customers.</p>
+</div>
+<div class="mb-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500">
+                search
+              </span>
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 pl-10 pr-4 py-2 focus:ring-primary focus:border-primary" placeholder="Search orders by invoice code or customer" value=""/>
+</div>
+</div>
+<div class="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+<table class="w-full table-auto">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Invoice Code</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Order Date</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Amount</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Customer</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240726-001</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 26, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$55.75</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Sophia Clark</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240725-002</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 25, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$32.50</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Ethan Miller</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240724-003</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 24, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$78.90</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Olivia Davis</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240723-004</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 23, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$42.20</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Liam Wilson</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240722-005</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 22, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$65.15</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Ava Martinez</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240721-006</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 21, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$28.00</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Noah Anderson</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240720-007</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 20, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$92.45</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Isabella Thomas</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240719-008</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 19, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$50.60</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Jackson Taylor</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240718-009</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 18, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$38.85</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Mia Moore</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">INV-20240717-010</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">July 17, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">$70.30</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-white">Lucas Jackson</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

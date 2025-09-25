@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ChefPoints Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#53d22d",
+              "background-light": "#f6f8f6",
+              "background-dark": "#152012",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+      body {
+        font-family: "Manrope", sans-serif;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col h-screen">
+<header class="flex-shrink-0 p-6 text-center">
+<h1 class="text-3xl font-extrabold text-black dark:text-white">ChefPoints</h1>
+</header>
+<main class="flex-1 px-6 flex flex-col justify-center">
+<div class="space-y-6">
+<div>
+<label class="sr-only" for="username">Username or Email</label>
+<input class="w-full h-14 px-4 bg-primary/10 dark:bg-primary/20 border-0 rounded-lg text-black dark:text-white placeholder-black/50 dark:placeholder-white/50 focus:ring-2 focus:ring-primary" id="username" placeholder="Username or Email" type="text"/>
+</div>
+<div>
+<label class="sr-only" for="password">Password</label>
+<input class="w-full h-14 px-4 bg-primary/10 dark:bg-primary/20 border-0 rounded-lg text-black dark:text-white placeholder-black/50 dark:placeholder-white/50 focus:ring-2 focus:ring-primary" id="password" placeholder="Password" type="password"/>
+</div>
+<a class="block text-sm text-right text-black/70 dark:text-white/70 hover:underline" href="#">Forgot Password?</a>
+</div>
+<div class="mt-8">
+<button class="w-full h-14 bg-primary rounded-lg text-black font-bold text-lg tracking-wide">Log In</button>
+</div>
+</main>
+<footer class="flex-shrink-0 p-6 text-center">
+<p class="text-sm text-black/70 dark:text-white/70">
+          Don't have an account?
+          <a class="font-bold text-primary hover:underline" href="#">Sign Up</a>
+</p>
+</footer>
+</div>
+
+</body></html>

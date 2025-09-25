@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1193d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+            },
+            fontFamily: {
+              display: ["Work Sans"],
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#101c22] dark:text-background-light">
+<div class="flex h-screen flex-col">
+<header class="flex h-16 shrink-0 items-center justify-between border-b border-background-light/80 dark:border-background-dark/80 px-6">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-xl font-bold">
+<span class="material-symbols-outlined text-primary text-3xl"> food_bank </span>
+<h1 class="text-inherit">DineEase</h1>
+</div>
+<nav class="hidden items-center gap-6 text-sm font-medium md:flex">
+<a class="text-inherit hover:text-primary" href="#">Menu</a>
+<a class="text-inherit hover:text-primary" href="#">Orders</a>
+<a class="text-inherit hover:text-primary" href="#">Inventory</a>
+<a class="text-inherit hover:text-primary" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="rounded-full p-2 hover:bg-background-light/50 dark:hover:bg-background-dark/50">
+<span class="material-symbols-outlined"> notifications </span>
+</button>
+<div class="size-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAt54Qr_f2B1ESmFEQDaIrI2tiNuuk0QYv3epa0L0n7eo3hVh0sY928aB5yhOOcyrgQqRqTCpXFgg7TWxuEYiJtn0ZSoErnIYAInEBRvrR7KGjqs7MWsV9WydAy3URNXINKA1tsEtNewvkSHA7fg1-uXnguWwnC79w_EWSKTouXFs2rhRaTugP7bTch6nLXJzFuVswRoGufG-bokv5F-rRI4nesnWl2az4Hh1fAhtdEDpzpuv_-zEcXnSe256FGXVF1ul2cEaDP6wKP");'></div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<div class="flex flex-1 flex-col gap-4 p-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-inherit/50"> search </span>
+<input class="w-full rounded-lg border-0 bg-background-light/80 dark:bg-background-dark/80 py-3 pl-10 pr-4 focus:ring-2 focus:ring-primary" placeholder="Search for items..." type="text"/>
+</div>
+<h2 class="text-2xl font-bold">Product Catalog</h2>
+<div class="grid flex-1 auto-rows-min grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-6 overflow-y-auto">
+<div class="flex cursor-pointer flex-col gap-2 rounded-lg bg-background-light/80 dark:bg-background-dark/80 p-4 transition-all hover:scale-105 hover:shadow-lg">
+<div class="aspect-square w-full rounded bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCRAc2tYEgvjx0oYra4IvB8sP8nla8FYon4JIPjyjswY1tX_P_MpM7ooSVh8HVR0EHqbyHYzpzf43mZvPrQNpcWEgfDNo18iIDaGY6L3CTEjX5Upe1pXI3YcfRtIYjJ99ifubcpooQBgCVi7yyK38A0h2L76PSVkMtvJiO5pPtVdito-OnXtg4rHOd1bK53NtTG2ibVs1vrLSjJZLALkqQLzMyQBf758lWSk2oHLY7s89UmzaT2DioE6F4Kw6-rbgRGx98fQNPrWya");'></div>
+<div>
+<p class="font-bold">Classic Burger</p>
+<p class="text-sm text-inherit/70">$9.99</p>
+</div>
+</div>
+<div class="flex cursor-pointer flex-col gap-2 rounded-lg bg-background-light/80 dark:bg-background-dark/80 p-4 transition-all hover:scale-105 hover:shadow-lg">
+<div class="aspect-square w-full rounded bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuACRW_gkIZ7JZe36jNRLYmsexTBTrom8UC41rtZoRCWF_MieNPqYOWHq_r5FdabOMyGLIODh40068lUs1S6BwcLE1aMjVs2a5QOxm8-XMMEed0mY4pQSMPO1PfyT_7s8AZwSisdCtBufNGJ8V4GjF9Rpr_86gLF_Fuk1OOxhrb-QLYjR6J8oAS-KEN-Ns_-I5y1SjaMtAj2WWngCSN70C5NL7wMlv-pzJfu9yTVubmg7YvKNps5EPuxNvYSATezpx8PSzDYbcZrnVqm");'></div>
+<div>
+<p class="font-bold">Veggie Delight</p>
+<p class="text-sm text-inherit/70">$11.99</p>
+</div>
+</div>
+<div class="flex cursor-pointer flex-col gap-2 rounded-lg bg-background-light/80 dark:bg-background-dark/80 p-4 transition-all hover:scale-105 hover:shadow-lg">
+<div class="aspect-square w-full rounded bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYMOlS53KdUmcblcAnCqYTsbCVzfOVKrxEl2tTAYrnKC679Lj-ie8Q-onTww-uxAz_zjf-DmG6n2jGnTmGkblMyjAdnWKc5Ii4JKiOfjb-MXQ319MmsmSwBxi0rak7OLQfXiu30id-xt0AsIM8EpaRsWhXgzmB1MoQ3et2kaZg9YZtXmZNVAAVmB9HL5L6g7lNOsQP-5klJr5fUydVFkIGHvfPh2vWW9Yflcv1vbt8mzBvCWfWfHeu_gRExe2lt8OurGO9_VbtcyMB");'></div>
+<div>
+<p class="font-bold">Crispy Chicken Sandwich</p>
+<p class="text-sm text-inherit/70">$10.99</p>
+</div>
+</div>
+<div class="flex cursor-pointer flex-col gap-2 rounded-lg bg-background-light/80 dark:bg-background-dark/80 p-4 transition-all hover:scale-105 hover:shadow-lg">
+<div class="aspect-square w-full rounded bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDDRn-4agVeterhBzBnda00034TCoVaGdMUlvnCUgF7zYVZf4i17z9Vhy0bXmKIeE4yPRAXBW_2QjRO6hrWgRupDj_aZxA6ffnk0CvfL2kHY4wrGK8OimZvzAXYKvJHlYhP4tEmKH-lWcN1SHrmKs8TquAN7PU1KXMu_ciJpL-kjfhgtxUWm-RxT-u0RT3RGngUbU1HOWCt71Y8R3K1yvkez0zD20HdaDYjL2b1g_PlfwCRa1AmxvpyFUfhdsALkGycZ462Lblakp5l");'></div>
+<div>
+<p class="font-bold">Fries</p>
+<p class="text-sm text-inherit/70">$3.99</p>
+</div>
+</div>
+<div class="flex cursor-pointer flex-col gap-2 rounded-lg bg-background-light/80 dark:bg-background-dark/80 p-4 transition-all hover:scale-105 hover:shadow-lg">
+<div class="aspect-square w-full rounded bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCw5pkOd707sYSrjxMk0a-vG_vKhcDcxKSFyI_SHhZfHm22VD56jmMYFYZWMZ7gNLx7zEn3O_pB87VNb6Q0KGVKqkvji3_EKVWFxdoeC0rybp93dFnvT_dbXteOGsWnZlMGSRH1q_X6KET7apR1SV24gP2oa6Zos075T2kZMLTMYnftZa4iKE46I9PEOe5ZyIbeOp3Wrh38LLvgBdFrMV9Tyi4cukQLeGq2JVTjIrUQ5LZQnaXTKa16nITSBjYfugPwOHvAyiS3HbJi");'></div>
+<div>
+<p class="font-bold">Onion Rings</p>
+<p class="text-sm text-inherit/70">$4.99</p>
+</div>
+</div>
+<div class="flex cursor-pointer flex-col gap-2 rounded-lg bg-background-light/80 dark:bg-background-dark/80 p-4 transition-all hover:scale-105 hover:shadow-lg">
+<div class="aspect-square w-full rounded bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUP8WI4gKJLQmE1LLHSVDPHpRxijfvXyOt3TzfNHVEywrOqo-YH3Ujo_ZoywH4Hy3N9MorHFm1GeVi7N5A9OPmKVExNv7ez9fMNX8qxq_kADFA5faNSS8Leqis3A-8pHf_Vb5LzKcVlxbSkIS2VB5UZ8B2HMUhpEKuxB7Z1WSAF-oItkvgyGni_OgQtM9g9EFKncPZFuaPN2aZmC_73W53oGXRUCE8VPUcrIBUOS1ujpqYscqYaG7zVsiRheBcnQ9Z69VoiE9Cpkw6");'></div>
+<div>
+<p class="font-bold">Milkshake</p>
+<p class="text-sm text-inherit/70">$5.99</p>
+</div>
+</div>
+</div>
+</div>
+<aside class="flex w-96 flex-col border-l border-background-light/80 dark:border-background-dark/80 bg-background-light/50 dark:bg-background-dark/50 p-6">
+<h2 class="text-2xl font-bold">Cart</h2>
+<div class="flex-1 space-y-4 overflow-y-auto py-4">
+<div class="flex items-center gap-4">
+<div class="size-16 shrink-0 rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB85KQZSBc7dRHhXWZBPAeTSIA1PaHkPYUGuCf2fJu4zRvQz-S5hxjr3T5zMn2d2a6gGRwub8p7FQc5p13Cp2ASiIqzNa_RO4qZCqiDX8JSIuYQRVXJqZ54MrTxQkIbu4FJUXKmrZ7VuvNHstzg1DApFry-xQ-q4FRfYtTG2quSBHubdb0pxFqq4OkvUFbF-GYzRxlUBE11DLWu1lz6TKp19_ZbWNhLCM4SToJqFZjkho_rRJADiypAu7EidSpgMn_D3AOHku353Ylm");'></div>
+<div class="flex-1">
+<p class="font-semibold">Classic Burger</p>
+<p class="text-sm text-inherit/70">$9.99</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-6 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">-</button>
+<span class="w-4 text-center font-semibold">2</span>
+<button class="flex size-6 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">+</button>
+</div>
+<button class="text-inherit/50 hover:text-primary"><span class="material-symbols-outlined"> delete </span></button>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-16 shrink-0 rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCqSnn3jRzVXeue2vV88SarABmRGcgwRWCc6TWBEhzm8BqtgQ1FuKtMrMjpssVT_DT7RUj5y1UY9Ytk4gfopIRMBoEPMe3495oldI1xrzomrAlNVOLVUF4aBjAgUtQwMNd7aw7ew_JtOBCleDUK7J6aT0JoryDBhmSQTlOyw0af9LpuCSvQ4B7EWG0tzd0f4PK3mdcV4Au6grw-v2iVyUMTBGhuu5zVO3sp2iSuYOeUANTy131isCCu8CX8CRgcxa8Q1EBBjfrA8mX");'></div>
+<div class="flex-1">
+<p class="font-semibold">Fries</p>
+<p class="text-sm text-inherit/70">$3.99</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-6 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">-</button>
+<span class="w-4 text-center font-semibold">1</span>
+<button class="flex size-6 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">+</button>
+</div>
+<button class="text-inherit/50 hover:text-primary"><span class="material-symbols-outlined"> delete </span></button>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-16 shrink-0 rounded-lg bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6kguoRmV--F7FAkvIqoWg_ItWgTtjzx_hxBB_WX0ZBKiMQoUbD-vEXJ5FdP3TB_wsZ2r-A3i5wN6DcxJWkiVe-dnVA6Ic0IudCFHkxZpd6n4koyNUg6vd2i4t03buvn7hOyuObEv7df0smT4H9pVWCfLUdYiyKrPHe8WKK6p8SGzoiazm1bGG-bdsvwVZg9TFvSVDYCaG9waju5-XydqL4oN5yEhobs2oDJeCO6U_oFUEUfwxPF0BNXGvKrrBd7pZt_Xr2PYmpo1C");'></div>
+<div class="flex-1">
+<p class="font-semibold">Milkshake</p>
+<p class="text-sm text-inherit/70">$5.99</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-6 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">-</button>
+<span class="w-4 text-center font-semibold">1</span>
+<button class="flex size-6 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">+</button>
+</div>
+<button class="text-inherit/50 hover:text-primary"><span class="material-symbols-outlined"> delete </span></button>
+</div>
+</div>
+<div class="space-y-2 border-t border-background-light/80 dark:border-background-dark/80 pt-4 text-sm font-medium">
+<div class="flex justify-between">
+<span>Subtotal</span>
+<span>$29.96</span>
+</div>
+<div class="flex justify-between text-inherit/70">
+<span>Tax (10%)</span>
+<span>$3.00</span>
+</div>
+<div class="flex justify-between text-lg font-bold">
+<span>Total</span>
+<span>$32.96</span>
+</div>
+</div>
+<button class="mt-4 w-full rounded-lg bg-primary py-3 text-lg font-bold text-white shadow-lg transition-transform hover:scale-[1.02]">Checkout</button>
+</aside>
+</main>
+</div>
+
+</body></html>
