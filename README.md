@@ -29,32 +29,38 @@ Dieses Projekt beschreibt ein System für eine **Benutzer-App** und eine **Resta
 ## Funktionale Anforderungen
 
 ### Benutzer-App
-- **Punkteübersicht**
-  - Anzeige aktueller Punkte
+**Punkteübersicht anzeigen**  
+   *Als Benutzer möchte ich meine aktuellen ChefPoints in der App sehen, um jederzeit zu wissen, wie viele Punkte ich bereits gesammelt habe.*
 
-- **Codeeingabe**
-  - Eingabe von Rechnungscodes
-  - Validierung (gültig/ungültig)
+**Rechnungscode eingeben**  
+   *Als Benutzer möchte ich einen Rechnungscode eingeben können, um neue ChefPoints gutgeschrieben zu bekommen.*
+
+**Validierung des Codes**  
+   *Als Benutzer möchte ich nach der Eingabe eine Rückmeldung bekommen, ob mein Rechnungscode gültig oder ungültig ist, um Fehler sofort zu erkennen.*
+
+**Punkte einlösen**  
+   *Als Benutzer möchte ich meine ChefPoints einlösen können, um Rabatte oder Prämien im Restaurant zu erhalten.*
 
 ---
 
 ### Restaurant-Webübersicht
-- **Punkteübersicht aller Benutzer**
-  - Liste mit Benutzern und Punkten
+ **Punkteübersicht aller Benutzer**  
+   *Als Restaurant-Admin möchte ich eine Liste aller Benutzer mit ihren aktuellen ChefPoints sehen, um deren Aktivität nachvollziehen zu können.*
 
+**Bestellübersicht einsehen**  
+   *Als Restaurant-Admin möchte ich eine Übersicht aller Bestellungen mit den dazugehörigen Rechnungscodes haben, um den Überblick über Umsätze und Nutzeraktivitäten zu behalten.*
 
-- **Bestellübersicht**
-  - Alle Bestellungen mit Rechnungscode
- 
-- **Warenkorb**
-  - Mitarbeiter können Waren in den Warenkorb legen
-  - Bei Bestellung wird ein Rechnungscode generiert
+**Warenkorb verwalten**  
+   *Als Mitarbeiter möchte ich Waren in einen Warenkorb legen können, um Bestellungen für Gäste einfach zusammenzustellen.*
+
+**Rechnungscode generieren**  
+   *Als Mitarbeiter möchte ich beim Abschluss einer Bestellung automatisch einen einmaligen Rechnungscode generiert bekommen, um diesen dem Gast für die ChefPoints zu geben.*
 
 ---
 
 ## Nicht-funktionale Anforderungen
-- **Sicherheit**
-  - Einmalige Rechnungscodes
+**Einmalige Rechnungscodes**  
+   *Als System möchte ich sicherstellen, dass jeder generierte Rechnungscode nur einmal gültig ist, um Missbrauch und doppelte Punktevergaben zu verhindern.*
 
 ## Techstack:
 
