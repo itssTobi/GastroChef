@@ -1,4 +1,4 @@
 package com.gastrochef.infrastructure.persistence.entity;
 
-public class OrderEntity {
+public class PointTransactionEntity {
 }

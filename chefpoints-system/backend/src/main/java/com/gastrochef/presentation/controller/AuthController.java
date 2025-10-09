@@ -1,4 +1,4 @@
 package com.gastrochef.presentation.controller;
 
-public class UserController {
+public class AuthController {
 }

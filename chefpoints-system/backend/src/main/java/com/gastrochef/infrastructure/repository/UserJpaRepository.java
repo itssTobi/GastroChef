@@ -1,4 +1,4 @@
 package com.gastrochef.infrastructure.repository;
 
-public class OrderJpaRepository {
+public class UserJpaRepository {
 }

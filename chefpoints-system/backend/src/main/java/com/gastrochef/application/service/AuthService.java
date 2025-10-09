@@ -1,4 +1,4 @@
 package com.gastrochef.application.service;
 
-public class RedeemReceiptCodeService {
+public class AuthService {
 }
