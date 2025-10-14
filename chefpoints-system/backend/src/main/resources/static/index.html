@@ -1,73 +1,344 @@
 <!DOCTYPE html>
-<html lang="at">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChefPoints</title>
-    <link rel="stylesheet" href="style.css">
+    <title>GastroChef - ChefPoints</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .link-btn {
+            background: none;
+            color: #667eea;
+            text-decoration: underline;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .points-display {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .points-number {
+            font-size: 72px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>ChefPoints</h1>
-        <button class="settings">⚙️</button>
-    </header>
+    <div class="container">
+        <h1>🍽️ GastroChef</h1>
 
-    <div class="profile">
-        <img src="https://via.placeholder.com/120" alt="Profile" class="avatar">
-        <h2>Sophia</h2>
-        <p class="member">Member since 2021</p>
+        <!-- Login Section -->
+        <div id="loginSection" class="section active">
+            <div id="loginMessage"></div>
+            <div class="form-group">
+                <label for="loginEmail">E-Mail</label>
+                <input type="email" id="loginEmail" placeholder="deine@email.com">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Passwort</label>
+                <input type="password" id="loginPassword" placeholder="Passwort">
+            </div>
+            <button onclick="login()">Anmelden</button>
+            <button class="link-btn" onclick="showRegister()">Noch kein Konto? Registrieren</button>
+        </div>
+
+        <!-- Register Section -->
+        <div id="registerSection" class="section">
+            <div id="registerMessage"></div>
+            <div class="form-group">
+                <label for="registerName">Name</label>
+                <input type="text" id="registerName" placeholder="Dein Name">
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">E-Mail</label>
+                <input type="email" id="registerEmail" placeholder="deine@email.com">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Passwort</label>
+                <input type="password" id="registerPassword" placeholder="Passwort">
+            </div>
+            <button onclick="register()">Registrieren</button>
+            <button class="link-btn" onclick="showLogin()">Bereits registriert? Anmelden</button>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="section">
+            <div id="dashboardMessage"></div>
+            <h2 style="text-align: center; margin-bottom: 10px;">Willkommen, <span id="userName"></span>!</h2>
+
+            <div class="points-display">
+                <p style="color: #666;">Deine ChefPoints</p>
+                <div class="points-number" id="pointsDisplay">0</div>
+            </div>
+
+            <div class="form-group">
+                <label for="billCode">Rechnungscode eingeben</label>
+                <input type="text" id="billCode" placeholder="Code eingeben" style="text-transform: uppercase;">
+            </div>
+            <button onclick="redeemCode()">Code einlösen</button>
+            <button class="logout-btn" onclick="logout()">Abmelden</button>
+        </div>
     </div>
 
-    <div class="points-card">
-        <p>Current Points</p>
-        <h3>1,250</h3>
-    </div>
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let currentUser = null;
 
-    <div class="history">
-        <h4>Points History</h4>
-        <div class="item">
-            <div>
-                <p class="title">Refer a friend</p>
-                <p class="status">Earned</p>
-            </div>
-            <p class="value positive">+200</p>
-        </div>
-        <div class="item">
-            <div>
-                <p class="title">Complete a survey</p>
-                <p class="status">Earned</p>
-            </div>
-            <p class="value positive">+100</p>
-        </div>
-        <div class="item">
-            <div>
-                <p class="title">Gift card</p>
-                <p class="status">Redeemed</p>
-            </div>
-            <p class="value negative">-500</p>
-        </div>
-        <div class="item">
-            <div>
-                <p class="title">Purchase</p>
-                <p class="status">Earned</p>
-            </div>
-            <p class="value positive">+100</p>
-        </div>
-    </div>
+        // Check if user is logged in
+        window.onload = function() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showDashboard();
+            }
+        };
 
-    <div class="redeem-section">
-        <h4>Redeem Points</h4>
-        <input type="text" placeholder="Enter invoice code" class="input-code">
-        <button class="btn">Submit Code</button>
-    </div>
+        function showLogin() {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById('loginSection').classList.add('active');
+        }
 
-</div>
+        function showRegister() {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById('registerSection').classList.add('active');
+        }
 
-<nav class="bottom-nav">
-    <button class="active">Points</button>
-    <button>Redeem</button>
-    <button>Scan</button>
-</nav>
+        function showDashboard() {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById('dashboardSection').classList.add('active');
+            document.getElementById('userName').textContent = currentUser.name;
+            updatePoints();
+        }
+
+        async function register() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            if (!name || !email || !password) {
+                showMessage('registerMessage', 'Bitte alle Felder ausfüllen', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/users/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage('registerMessage', 'Registrierung erfolgreich! Bitte anmelden.', 'success');
+                    setTimeout(showLogin, 2000);
+                } else {
+                    showMessage('registerMessage', data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('registerMessage', 'Fehler bei der Registrierung', 'error');
+            }
+        }
+
+        async function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showMessage('loginMessage', 'Bitte E-Mail und Passwort eingeben', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/users/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    currentUser = data.data;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    showDashboard();
+                } else {
+                    showMessage('loginMessage', data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('loginMessage', 'Fehler beim Login', 'error');
+            }
+        }
+
+        async function updatePoints() {
+            try {
+                const response = await fetch(`${API_BASE}/users/${currentUser.id}/points`);
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('pointsDisplay').textContent = data.data;
+                    currentUser.chefPoints = data.data;
+                }
+            } catch (error) {
+                console.error('Fehler beim Abrufen der Punkte', error);
+            }
+        }
+
+        async function redeemCode() {
+            const code = document.getElementById('billCode').value.toUpperCase();
+
+            if (!code) {
+                showMessage('dashboardMessage', 'Bitte Code eingeben', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/bills/redeem`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code, userId: currentUser.id })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage('dashboardMessage', data.message, 'success');
+                    document.getElementById('billCode').value = '';
+                    updatePoints();
+                } else {
+                    showMessage('dashboardMessage', data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('dashboardMessage', 'Fehler beim Einlösen des Codes', 'error');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            showLogin();
+        }
+
+        function showMessage(elementId, message, type) {
+            const messageDiv = document.getElementById(elementId);
+            messageDiv.innerHTML = `<div class="message ${type}">${message}</div>`;
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
+
