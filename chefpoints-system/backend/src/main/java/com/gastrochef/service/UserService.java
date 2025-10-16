@@ -6,20 +6,36 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
 
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "^[A-Za-z0-9.%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+    );
+
     public User registerUser(String name, String email, String password) {
-        if (userRepository.existsByEmail(email)) {
+
+        String normalizedEmail = email == null ? "" : email.trim().toLowerCase();
+
+        if (normalizedEmail.isEmpty()) {
+            throw new IllegalArgumentException("Email darf nicht leer sein");
+        }
+
+        if (!EMAIL_PATTERN.matcher(normalizedEmail).matches()) {
+            throw new IllegalArgumentException("Ungültiges Email-Format");
+        }
+
+        if (userRepository.findByEmail(normalizedEmail).isPresent()) {
             throw new IllegalArgumentException("Email bereits registriert");
         }
 
         User user = new User();
         user.setName(name);
-        user.setEmail(email);
+        user.setEmail(normalizedEmail);
         user.setPassword(password); // TODO: Password hashing implementieren
         user.setChefPoints(0);
 
