@@ -1,0 +1,10 @@
+| ID | CODE | POINTS | REDEEMED | REDEEMED\_BY\_USER\_ID |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | RC-1001 | 10 | true | 1 |
+| 2 | RC-1002 | 5 | false | null |
+| 3 | RC-1003 | 99 | false | null |
+| 4 | RC-1004 | 0 | false | null |
+| 5 | RC-1005 | 12 | false | null |
+| 6 | RC-1006 | 20 | false | null |
+| 7 | RC-1007 | 100 | true | 1 |
+| 8 | RC-1008 | 3 | true | 1 |
