@@ -36,7 +36,7 @@ public class UserService {
         User user = new User();
         user.setName(name);
         user.setEmail(normalizedEmail);
-        user.setPassword(password); // TODO: Password hashing implementieren
+        user.setPassword(password);
         user.setChefPoints(0);
 
         return userRepository.save(user);
