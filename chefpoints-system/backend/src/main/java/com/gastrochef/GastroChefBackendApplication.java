@@ -10,4 +10,5 @@ public class GastroChefBackendApplication {
 		SpringApplication.run(GastroChefBackendApplication.class, args);
 	}
 
+
 }
