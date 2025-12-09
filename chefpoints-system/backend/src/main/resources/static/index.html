@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: cornflowerblue;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -72,7 +72,7 @@
         button {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: cornflowerblue;
             color: white;
             border: none;
             border-radius: 8px;
@@ -133,11 +133,60 @@
             background: #dc3545;
             margin-top: 20px;
         }
+
+        .tabs-navigation {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 10px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -13px;
+        }
+
+        .tab-btn:hover {
+            color: #667eea;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🍽️ GastroChef</h1>
+        <h1>GastroChef</h1>
 
         <!-- Login Section -->
         <div id="loginSection" class="section active">
@@ -176,19 +225,48 @@
         <!-- Dashboard Section -->
         <div id="dashboardSection" class="section">
             <div id="dashboardMessage"></div>
-            <h2 style="text-align: center; margin-bottom: 10px;">Willkommen, <span id="userName"></span>!</h2>
 
-            <div class="points-display">
-                <p style="color: #666;">Deine ChefPoints</p>
-                <div class="points-number" id="pointsDisplay">0</div>
+            <!-- Tabs Navigation -->
+            <div class="tabs-navigation">
+                <button class="tab-btn active" onclick="switchTab('home')">Home</button>
+                <button class="tab-btn" onclick="switchTab('products')">Produkte</button>
+                <button class="tab-btn" onclick="switchTab('history')">Historie</button>
             </div>
 
-            <div class="form-group">
-                <label for="billCode">Rechnungscode eingeben</label>
-                <input type="text" id="billCode" placeholder="Code eingeben" style="text-transform: uppercase;">
+            <!-- Home Tab -->
+            <div id="homeTab" class="tab-content active">
+                <h2 style="text-align: center; margin-bottom: 10px;">Hallo, <span id="userName"></span>!</h2>
+
+                <div class="points-display">
+                    <p style="color: #666;">Deine ChefPoints</p>
+                    <div class="points-number" id="pointsDisplay">0</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="billCode">Rechnungscode eingeben</label>
+                    <input type="text" id="billCode" placeholder="Code eingeben" style="text-transform: uppercase;">
+                </div>
+                <button onclick="redeemCode()">Code einlösen</button>
+                <button class="logout-btn" onclick="logout()">Abmelden</button>
             </div>
-            <button onclick="redeemCode()">Code einlösen</button>
-            <button class="logout-btn" onclick="logout()">Abmelden</button>
+
+            <!-- Products Tab -->
+            <div id="productsTab" class="tab-content">
+                <h2 style="text-align: center; margin-bottom: 20px;">Verfügbare Produkte</h2>
+                <div id="currentPointsInfo" style="text-align: center; margin-bottom: 20px; padding: 10px; background: #f0f0f0; border-radius: 8px;">
+                    <p>Deine Punkte: <strong id="productsPointsDisplay">0</strong></p>
+                </div>
+                <div id="productsContainer" style="display: flex; flex-direction: column; gap: 15px;"></div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="historyTab" class="tab-content">
+                <h2 style="text-align: center; margin-bottom: 20px;">Einlösungshistorie</h2>
+                <div id="historyContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                <div id="noHistoryMessage" style="text-align: center; color: #999; padding: 20px;">
+                    Noch keine Einlösungen vorhanden
+                </div>
+            </div>
         </div>
     </div>
 
@@ -290,10 +368,12 @@
                 if (data.success) {
                     document.getElementById('pointsDisplay').textContent = data.data;
                     currentUser.chefPoints = data.data;
+                    return data.data;
                 }
             } catch (error) {
                 console.error('Fehler beim Abrufen der Punkte', error);
             }
+            return Number(currentUser?.chefPoints) || 0;
         }
 
         async function redeemCode() {
@@ -337,6 +417,215 @@
             setTimeout(() => {
                 messageDiv.innerHTML = '';
             }, 5000);
+        }
+
+        // Tab Management
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            event.target.classList.add('active');
+
+            // Load content when tab is opened
+            if (tabName === 'products') {
+                loadProducts();
+            } else if (tabName === 'history') {
+                loadHistory();
+            }
+        }
+
+        // Load products
+        async function loadProducts() {
+            try {
+                // Erst die aktuellen Punkte holen, damit die Anzeige korrekt ist
+                await updatePoints();
+
+                const response = await fetch(`${API_BASE}/products?userId=${currentUser.id}`);
+                const data = await response.json();
+
+                if (data.success && Array.isArray(data.data)) {
+                    const products = data.data;
+                    const container = document.getElementById('productsContainer');
+
+                    // Aktuelle Punkte anzeigen
+                    document.getElementById('productsPointsDisplay').textContent = Number(currentUser.chefPoints) || 0;
+
+                    if (products.length === 0) {
+                        container.innerHTML = '<p style="text-align: center; color: #999;">Keine Produkte verfügbar</p>';
+                        return;
+                    }
+
+                    container.innerHTML = products.map(product => {
+                        const cost = Number(product.pointsCost) || 0;
+                        const userPoints = Number(currentUser.chefPoints) || 0;
+                        // lokale, zuverlässige Prüfung ob einlösbar
+                        const canRedeemLocal = userPoints >= cost;
+
+                        const backgroundColor = canRedeemLocal ? '#e8f5e9' : '#f5f5f5';
+                        const borderColor = canRedeemLocal ? '#4caf50' : '#cccccc';
+                        const textColor = canRedeemLocal ? '#1b5e20' : '#999999';
+                        const buttonStyle = canRedeemLocal ? 'background-color: #4caf50; color: white;' : 'background-color: #cccccc; color: #666666; cursor: not-allowed;';
+
+                        // Produktname für onclick escapen (einfache Ersatzregel für apostroph)
+                        const safeName = String(product.name || '').replace(/'/g, "\\'");
+
+                        return `
+                    <div style="border: 2px solid ${borderColor}; border-radius: 12px; padding: 15px; background-color: ${backgroundColor};">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                            <div>
+                                <h3 style="color: ${textColor}; margin-bottom: 5px;">${product.name}</h3>
+                                <p style="color: #666; font-size: 14px; margin-bottom: 8px;">${product.description}</p>
+                            </div>
+                            <div style="background-color: #667eea; color: white; padding: 8px 12px; border-radius: 8px; font-weight: bold; white-space: nowrap;">
+                                ${product.pointsCost} Pts
+                            </div>
+                        </div>
+                        <button
+                            onclick="redeemProduct(${product.id}, '${safeName}')"
+                            style="width: 100%; padding: 10px; border: none; border-radius: 8px; font-weight: 600; ${buttonStyle}"
+                            ${!canRedeemLocal ? 'disabled' : ''}
+                        >
+                            ${canRedeemLocal ? 'Einlösen' : 'Nicht genug Punkte'}
+                        </button>
+                    </div>
+                `;
+                    }).join('');
+                } else {
+                    document.getElementById('productsContainer').innerHTML = '<p style="text-align: center; color: #999;">Fehler beim Laden der Produkte</p>';
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden der Produkte:', error);
+                document.getElementById('productsContainer').innerHTML = '<p style="text-align: center; color: #e74c3c;">Fehler beim Laden der Produkte</p>';
+            }
+        }
+
+        // Redeem product
+        async function redeemProduct(productId, productName) {
+            if (confirm(`Möchtest du "${productName}" wirklich einlösen?`)) {
+                try {
+                    const response = await fetch(`${API_BASE}/redemptions/redeem`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            userId: currentUser.id,
+                            productId: productId
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        const redemption = data.data;
+                        // Show modal with redemption code
+                        showRedemptionModal(productName, redemption.redemptionCode, redemption.pointsDeducted);
+
+                        // Update points
+                        updatePoints();
+                        // Reload products
+                        loadProducts();
+                    } else {
+                        alert('Fehler: ' + data.message);
+                    }
+                } catch (error) {
+                    console.error('Fehler beim Einlösen:', error);
+                    alert('Fehler beim Einlösen des Produkts');
+                }
+            }
+        }
+
+        // Show redemption modal
+        function showRedemptionModal(productName, redemptionCode, pointsDeducted) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            `;
+
+            modal.innerHTML = `
+                <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+                    <h2 style="color: #4caf50; margin-bottom: 20px;">Erfolgreich eingelöst!</h2>
+                    <p style="font-size: 18px; margin-bottom: 20px;"><strong>${productName}</strong></p>
+                    <p style="color: #666; margin-bottom: 10px;">Dein Einlösungscode:</p>
+                    <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-family: monospace; font-size: 20px; font-weight: bold; color: #667eea;">
+                        ${redemptionCode}
+                    </div>
+                    <p style="color: #999; font-size: 14px; margin-bottom: 20px;">
+                        <strong>-${pointsDeducted} Punkte</strong>
+                    </p>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: #667eea; color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                        Fertig
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // Load history
+        async function loadHistory() {
+            try {
+                const response = await fetch(`${API_BASE}/redemptions/user/${currentUser.id}`);
+                const data = await response.json();
+
+                if (data.success && Array.isArray(data.data)) {
+                    const history = data.data;
+                    const container = document.getElementById('historyContainer');
+                    const noMessage = document.getElementById('noHistoryMessage');
+
+                    if (history.length === 0) {
+                        container.innerHTML = '';
+                        noMessage.style.display = 'block';
+                        return;
+                    }
+
+                    noMessage.style.display = 'none';
+                    container.innerHTML = history.map(item => {
+                        const date = new Date(item.redemptionDate);
+                        const formattedDate = date.toLocaleDateString('de-DE') + ' ' + date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+
+                        return `
+                            <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background: #fafafa;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                    <div>
+                                        <h4 style="color: #333; margin-bottom: 5px;">${item.productName}</h4>
+                                        <p style="color: #999; font-size: 13px; margin-bottom: 8px;">${formattedDate}</p>
+                                    </div>
+                                    <div style="background: #ffebee; color: #c62828; padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 14px;">
+                                        -${item.pointsDeducted} Pts
+                                    </div>
+                                </div>
+                                <div style="background: white; padding: 10px; border-radius: 6px; border: 1px solid #e0e0e0; font-family: monospace; font-size: 14px; color: #667eea; word-break: break-all;">
+                                    <strong>Code:</strong> ${item.redemptionCode}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden der Historie:', error);
+                document.getElementById('historyContainer').innerHTML = '<p style="text-align: center; color: #e74c3c;">Fehler beim Laden der Historie</p>';
+            }
         }
     </script>
 </body>
