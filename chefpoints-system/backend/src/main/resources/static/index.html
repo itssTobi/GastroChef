@@ -185,299 +185,299 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>GastroChef</h1>
+<div class="container">
+    <h1>GastroChef</h1>
 
-        <!-- Login Section -->
-        <div id="loginSection" class="section active">
-            <div id="loginMessage"></div>
-            <div class="form-group">
-                <label for="loginEmail">E-Mail</label>
-                <input type="email" id="loginEmail" placeholder="deine@email.com">
-            </div>
-            <div class="form-group">
-                <label for="loginPassword">Passwort</label>
-                <input type="password" id="loginPassword" placeholder="Passwort">
-            </div>
-            <button onclick="login()">Anmelden</button>
-            <button class="link-btn" onclick="showRegister()">Noch kein Konto? Registrieren</button>
+    <!-- Login Section -->
+    <div id="loginSection" class="section active">
+        <div id="loginMessage"></div>
+        <div class="form-group">
+            <label for="loginEmail">E-Mail</label>
+            <input type="email" id="loginEmail" placeholder="deine@email.com">
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Passwort</label>
+            <input type="password" id="loginPassword" placeholder="Passwort">
+        </div>
+        <button onclick="login()">Anmelden</button>
+        <button class="link-btn" onclick="showRegister()">Noch kein Konto? Registrieren</button>
+    </div>
+
+    <!-- Register Section -->
+    <div id="registerSection" class="section">
+        <div id="registerMessage"></div>
+        <div class="form-group">
+            <label for="registerName">Name</label>
+            <input type="text" id="registerName" placeholder="Dein Name">
+        </div>
+        <div class="form-group">
+            <label for="registerEmail">E-Mail</label>
+            <input type="email" id="registerEmail" placeholder="deine@email.com">
+        </div>
+        <div class="form-group">
+            <label for="registerPassword">Passwort</label>
+            <input type="password" id="registerPassword" placeholder="Passwort">
+        </div>
+        <button onclick="register()">Registrieren</button>
+        <button class="link-btn" onclick="showLogin()">Bereits registriert? Anmelden</button>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" class="section">
+        <div id="dashboardMessage"></div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs-navigation">
+            <button class="tab-btn active" onclick="switchTab('home')">Home</button>
+            <button class="tab-btn" onclick="switchTab('products')">Produkte</button>
+            <button class="tab-btn" onclick="switchTab('history')">Historie</button>
         </div>
 
-        <!-- Register Section -->
-        <div id="registerSection" class="section">
-            <div id="registerMessage"></div>
-            <div class="form-group">
-                <label for="registerName">Name</label>
-                <input type="text" id="registerName" placeholder="Dein Name">
+        <!-- Home Tab -->
+        <div id="homeTab" class="tab-content active">
+            <h2 style="text-align: center; margin-bottom: 10px;">Hallo, <span id="userName"></span>!</h2>
+
+            <div class="points-display">
+                <p style="color: #666;">Deine ChefPoints</p>
+                <div class="points-number" id="pointsDisplay">0</div>
             </div>
+
             <div class="form-group">
-                <label for="registerEmail">E-Mail</label>
-                <input type="email" id="registerEmail" placeholder="deine@email.com">
+                <label for="billCode">Rechnungscode eingeben</label>
+                <input type="text" id="billCode" placeholder="Code eingeben" style="text-transform: uppercase;">
             </div>
-            <div class="form-group">
-                <label for="registerPassword">Passwort</label>
-                <input type="password" id="registerPassword" placeholder="Passwort">
-            </div>
-            <button onclick="register()">Registrieren</button>
-            <button class="link-btn" onclick="showLogin()">Bereits registriert? Anmelden</button>
+            <button onclick="redeemCode()">Code einlösen</button>
+            <button class="logout-btn" onclick="logout()">Abmelden</button>
         </div>
 
-        <!-- Dashboard Section -->
-        <div id="dashboardSection" class="section">
-            <div id="dashboardMessage"></div>
-
-            <!-- Tabs Navigation -->
-            <div class="tabs-navigation">
-                <button class="tab-btn active" onclick="switchTab('home')">Home</button>
-                <button class="tab-btn" onclick="switchTab('products')">Produkte</button>
-                <button class="tab-btn" onclick="switchTab('history')">Historie</button>
+        <!-- Products Tab -->
+        <div id="productsTab" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 20px;">Verfügbare Produkte</h2>
+            <div id="currentPointsInfo" style="text-align: center; margin-bottom: 20px; padding: 10px; background: #f0f0f0; border-radius: 8px;">
+                <p>Deine Punkte: <strong id="productsPointsDisplay">0</strong></p>
             </div>
+            <div id="productsContainer" style="display: flex; flex-direction: column; gap: 15px;"></div>
+        </div>
 
-            <!-- Home Tab -->
-            <div id="homeTab" class="tab-content active">
-                <h2 style="text-align: center; margin-bottom: 10px;">Hallo, <span id="userName"></span>!</h2>
-
-                <div class="points-display">
-                    <p style="color: #666;">Deine ChefPoints</p>
-                    <div class="points-number" id="pointsDisplay">0</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="billCode">Rechnungscode eingeben</label>
-                    <input type="text" id="billCode" placeholder="Code eingeben" style="text-transform: uppercase;">
-                </div>
-                <button onclick="redeemCode()">Code einlösen</button>
-                <button class="logout-btn" onclick="logout()">Abmelden</button>
-            </div>
-
-            <!-- Products Tab -->
-            <div id="productsTab" class="tab-content">
-                <h2 style="text-align: center; margin-bottom: 20px;">Verfügbare Produkte</h2>
-                <div id="currentPointsInfo" style="text-align: center; margin-bottom: 20px; padding: 10px; background: #f0f0f0; border-radius: 8px;">
-                    <p>Deine Punkte: <strong id="productsPointsDisplay">0</strong></p>
-                </div>
-                <div id="productsContainer" style="display: flex; flex-direction: column; gap: 15px;"></div>
-            </div>
-
-            <!-- History Tab -->
-            <div id="historyTab" class="tab-content">
-                <h2 style="text-align: center; margin-bottom: 20px;">Einlösungshistorie</h2>
-                <div id="historyContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
-                <div id="noHistoryMessage" style="text-align: center; color: #999; padding: 20px;">
-                    Noch keine Einlösungen vorhanden
-                </div>
+        <!-- History Tab -->
+        <div id="historyTab" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 20px;">Einlösungshistorie</h2>
+            <div id="historyContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
+            <div id="noHistoryMessage" style="text-align: center; color: #999; padding: 20px;">
+                Noch keine Einlösungen vorhanden
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        const API_BASE = 'http://localhost:8080/api';
-        let currentUser = null;
+<script>
+    const API_BASE = 'http://localhost:8080/api';
+    let currentUser = null;
 
-        // Check if user is logged in
-        window.onload = function() {
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
+    // Check if user is logged in
+    window.onload = function() {
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+            currentUser = JSON.parse(savedUser);
+            showDashboard();
+        }
+    };
+
+    function showLogin() {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('loginSection').classList.add('active');
+    }
+
+    function showRegister() {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('registerSection').classList.add('active');
+    }
+
+    function showDashboard() {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('dashboardSection').classList.add('active');
+        document.getElementById('userName').textContent = currentUser.name;
+        updatePoints();
+    }
+
+    async function register() {
+        const name = document.getElementById('registerName').value;
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+
+        if (!name || !email || !password) {
+            showMessage('registerMessage', 'Bitte alle Felder ausfüllen', 'error');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE}/users/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                showMessage('registerMessage', 'Registrierung erfolgreich! Bitte anmelden.', 'success');
+                setTimeout(showLogin, 2000);
+            } else {
+                showMessage('registerMessage', data.message, 'error');
+            }
+        } catch (error) {
+            showMessage('registerMessage', 'Fehler bei der Registrierung', 'error');
+        }
+    }
+
+    async function login() {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        if (!email || !password) {
+            showMessage('loginMessage', 'Bitte E-Mail und Passwort eingeben', 'error');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE}/users/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                currentUser = data.data;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 showDashboard();
+            } else {
+                showMessage('loginMessage', data.message, 'error');
             }
-        };
-
-        function showLogin() {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById('loginSection').classList.add('active');
+        } catch (error) {
+            showMessage('loginMessage', 'Fehler beim Login', 'error');
         }
+    }
 
-        function showRegister() {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById('registerSection').classList.add('active');
-        }
+    async function updatePoints() {
+        try {
+            const response = await fetch(`${API_BASE}/users/${currentUser.id}/points`);
+            const data = await response.json();
 
-        function showDashboard() {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById('dashboardSection').classList.add('active');
-            document.getElementById('userName').textContent = currentUser.name;
-            updatePoints();
-        }
-
-        async function register() {
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-
-            if (!name || !email || !password) {
-                showMessage('registerMessage', 'Bitte alle Felder ausfüllen', 'error');
-                return;
+            if (data.success) {
+                document.getElementById('pointsDisplay').textContent = data.data;
+                currentUser.chefPoints = data.data;
+                return data.data;
             }
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Punkte', error);
+        }
+        return Number(currentUser?.chefPoints) || 0;
+    }
 
-            try {
-                const response = await fetch(`${API_BASE}/users/register`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, password })
-                });
+    async function redeemCode() {
+        const code = document.getElementById('billCode').value.toUpperCase();
 
-                const data = await response.json();
-
-                if (data.success) {
-                    showMessage('registerMessage', 'Registrierung erfolgreich! Bitte anmelden.', 'success');
-                    setTimeout(showLogin, 2000);
-                } else {
-                    showMessage('registerMessage', data.message, 'error');
-                }
-            } catch (error) {
-                showMessage('registerMessage', 'Fehler bei der Registrierung', 'error');
-            }
+        if (!code) {
+            showMessage('dashboardMessage', 'Bitte Code eingeben', 'error');
+            return;
         }
 
-        async function login() {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            if (!email || !password) {
-                showMessage('loginMessage', 'Bitte E-Mail und Passwort eingeben', 'error');
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_BASE}/users/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    currentUser = data.data;
-                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                    showDashboard();
-                } else {
-                    showMessage('loginMessage', data.message, 'error');
-                }
-            } catch (error) {
-                showMessage('loginMessage', 'Fehler beim Login', 'error');
-            }
-        }
-
-        async function updatePoints() {
-            try {
-                const response = await fetch(`${API_BASE}/users/${currentUser.id}/points`);
-                const data = await response.json();
-
-                if (data.success) {
-                    document.getElementById('pointsDisplay').textContent = data.data;
-                    currentUser.chefPoints = data.data;
-                    return data.data;
-                }
-            } catch (error) {
-                console.error('Fehler beim Abrufen der Punkte', error);
-            }
-            return Number(currentUser?.chefPoints) || 0;
-        }
-
-        async function redeemCode() {
-            const code = document.getElementById('billCode').value.toUpperCase();
-
-            if (!code) {
-                showMessage('dashboardMessage', 'Bitte Code eingeben', 'error');
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_BASE}/bills/redeem`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ code, userId: currentUser.id })
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    showMessage('dashboardMessage', data.message, 'success');
-                    document.getElementById('billCode').value = '';
-                    updatePoints();
-                } else {
-                    showMessage('dashboardMessage', data.message, 'error');
-                }
-            } catch (error) {
-                showMessage('dashboardMessage', 'Fehler beim Einlösen des Codes', 'error');
-            }
-        }
-
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('currentUser');
-            showLogin();
-        }
-
-        function showMessage(elementId, message, type) {
-            const messageDiv = document.getElementById(elementId);
-            messageDiv.innerHTML = `<div class="message ${type}">${message}</div>`;
-            setTimeout(() => {
-                messageDiv.innerHTML = '';
-            }, 5000);
-        }
-
-        // Tab Management
-        function switchTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
+        try {
+            const response = await fetch(`${API_BASE}/bills/redeem`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code, userId: currentUser.id })
             });
 
-            // Show selected tab
-            document.getElementById(tabName + 'Tab').classList.add('active');
-            event.target.classList.add('active');
+            const data = await response.json();
 
-            // Load content when tab is opened
-            if (tabName === 'products') {
-                loadProducts();
-            } else if (tabName === 'history') {
-                loadHistory();
+            if (data.success) {
+                showMessage('dashboardMessage', data.message, 'success');
+                document.getElementById('billCode').value = '';
+                updatePoints();
+            } else {
+                showMessage('dashboardMessage', data.message, 'error');
             }
+        } catch (error) {
+            showMessage('dashboardMessage', 'Fehler beim Einlösen des Codes', 'error');
         }
+    }
 
-        // Load products
-        async function loadProducts() {
-            try {
-                // Erst die aktuellen Punkte holen, damit die Anzeige korrekt ist
-                await updatePoints();
+    function logout() {
+        currentUser = null;
+        localStorage.removeItem('currentUser');
+        showLogin();
+    }
 
-                const response = await fetch(`${API_BASE}/products?userId=${currentUser.id}`);
-                const data = await response.json();
+    function showMessage(elementId, message, type) {
+        const messageDiv = document.getElementById(elementId);
+        messageDiv.innerHTML = `<div class="message ${type}">${message}</div>`;
+        setTimeout(() => {
+            messageDiv.innerHTML = '';
+        }, 5000);
+    }
 
-                if (data.success && Array.isArray(data.data)) {
-                    const products = data.data;
-                    const container = document.getElementById('productsContainer');
+    // Tab Management
+    function switchTab(tabName) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        // Remove active class from all buttons
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
 
-                    // Aktuelle Punkte anzeigen
-                    document.getElementById('productsPointsDisplay').textContent = Number(currentUser.chefPoints) || 0;
+        // Show selected tab
+        document.getElementById(tabName + 'Tab').classList.add('active');
+        event.target.classList.add('active');
 
-                    if (products.length === 0) {
-                        container.innerHTML = '<p style="text-align: center; color: #999;">Keine Produkte verfügbar</p>';
-                        return;
-                    }
+        // Load content when tab is opened
+        if (tabName === 'products') {
+            loadProducts();
+        } else if (tabName === 'history') {
+            loadHistory();
+        }
+    }
 
-                    container.innerHTML = products.map(product => {
-                        const cost = Number(product.pointsCost) || 0;
-                        const userPoints = Number(currentUser.chefPoints) || 0;
-                        // lokale, zuverlässige Prüfung ob einlösbar
-                        const canRedeemLocal = userPoints >= cost;
+    // Load products
+    async function loadProducts() {
+        try {
+            // Erst die aktuellen Punkte holen, damit die Anzeige korrekt ist
+            await updatePoints();
 
-                        const backgroundColor = canRedeemLocal ? '#e8f5e9' : '#f5f5f5';
-                        const borderColor = canRedeemLocal ? '#4caf50' : '#cccccc';
-                        const textColor = canRedeemLocal ? '#1b5e20' : '#999999';
-                        const buttonStyle = canRedeemLocal ? 'background-color: #4caf50; color: white;' : 'background-color: #cccccc; color: #666666; cursor: not-allowed;';
+            const response = await fetch(`${API_BASE}/products?userId=${currentUser.id}`);
+            const data = await response.json();
 
-                        // Produktname für onclick escapen (einfache Ersatzregel für apostroph)
-                        const safeName = String(product.name || '').replace(/'/g, "\\'");
+            if (data.success && Array.isArray(data.data)) {
+                const products = data.data;
+                const container = document.getElementById('productsContainer');
 
-                        return `
+                // Aktuelle Punkte anzeigen
+                document.getElementById('productsPointsDisplay').textContent = Number(currentUser.chefPoints) || 0;
+
+                if (products.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: #999;">Keine Produkte verfügbar</p>';
+                    return;
+                }
+
+                container.innerHTML = products.map(product => {
+                    const cost = Number(product.pointsCost) || 0;
+                    const userPoints = Number(currentUser.chefPoints) || 0;
+                    // lokale, zuverlässige Prüfung ob einlösbar
+                    const canRedeemLocal = userPoints >= cost;
+
+                    const backgroundColor = canRedeemLocal ? '#e8f5e9' : '#f5f5f5';
+                    const borderColor = canRedeemLocal ? '#4caf50' : '#cccccc';
+                    const textColor = canRedeemLocal ? '#1b5e20' : '#999999';
+                    const buttonStyle = canRedeemLocal ? 'background-color: #4caf50; color: white;' : 'background-color: #cccccc; color: #666666; cursor: not-allowed;';
+
+                    // Produktname für onclick escapen (einfache Ersatzregel für apostroph)
+                    const safeName = String(product.name || '').replace(/'/g, "\\'");
+
+                    return `
                     <div style="border: 2px solid ${borderColor}; border-radius: 12px; padding: 15px; background-color: ${backgroundColor};">
                         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
                             <div>
@@ -497,54 +497,54 @@
                         </button>
                     </div>
                 `;
-                    }).join('');
+                }).join('');
+            } else {
+                document.getElementById('productsContainer').innerHTML = '<p style="text-align: center; color: #999;">Fehler beim Laden der Produkte</p>';
+            }
+        } catch (error) {
+            console.error('Fehler beim Laden der Produkte:', error);
+            document.getElementById('productsContainer').innerHTML = '<p style="text-align: center; color: #e74c3c;">Fehler beim Laden der Produkte</p>';
+        }
+    }
+
+    // Redeem product
+    async function redeemProduct(productId, productName) {
+        if (confirm(`Möchtest du "${productName}" wirklich einlösen?`)) {
+            try {
+                const response = await fetch(`${API_BASE}/redemptions/redeem`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId: currentUser.id,
+                        productId: productId
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const redemption = data.data;
+                    // Show modal with redemption code
+                    showRedemptionModal(productName, redemption.redemptionCode, redemption.pointsDeducted);
+
+                    // Update points
+                    updatePoints();
+                    // Reload products
+                    loadProducts();
                 } else {
-                    document.getElementById('productsContainer').innerHTML = '<p style="text-align: center; color: #999;">Fehler beim Laden der Produkte</p>';
+                    alert('Fehler: ' + data.message);
                 }
             } catch (error) {
-                console.error('Fehler beim Laden der Produkte:', error);
-                document.getElementById('productsContainer').innerHTML = '<p style="text-align: center; color: #e74c3c;">Fehler beim Laden der Produkte</p>';
+                console.error('Fehler beim Einlösen:', error);
+                alert('Fehler beim Einlösen des Produkts');
             }
         }
+    }
 
-        // Redeem product
-        async function redeemProduct(productId, productName) {
-            if (confirm(`Möchtest du "${productName}" wirklich einlösen?`)) {
-                try {
-                    const response = await fetch(`${API_BASE}/redemptions/redeem`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            userId: currentUser.id,
-                            productId: productId
-                        })
-                    });
-
-                    const data = await response.json();
-
-                    if (data.success) {
-                        const redemption = data.data;
-                        // Show modal with redemption code
-                        showRedemptionModal(productName, redemption.redemptionCode, redemption.pointsDeducted);
-
-                        // Update points
-                        updatePoints();
-                        // Reload products
-                        loadProducts();
-                    } else {
-                        alert('Fehler: ' + data.message);
-                    }
-                } catch (error) {
-                    console.error('Fehler beim Einlösen:', error);
-                    alert('Fehler beim Einlösen des Produkts');
-                }
-            }
-        }
-
-        // Show redemption modal
-        function showRedemptionModal(productName, redemptionCode, pointsDeducted) {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
+    // Show redemption modal
+    function showRedemptionModal(productName, redemptionCode, pointsDeducted) {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -557,7 +557,7 @@
                 z-index: 1000;
             `;
 
-            modal.innerHTML = `
+        modal.innerHTML = `
                 <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
                     <h2 style="color: #4caf50; margin-bottom: 20px;">Erfolgreich eingelöst!</h2>
                     <p style="font-size: 18px; margin-bottom: 20px;"><strong>${productName}</strong></p>
@@ -574,37 +574,37 @@
                 </div>
             `;
 
-            document.body.appendChild(modal);
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.remove();
+        document.body.appendChild(modal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+    }
+
+    // Load history
+    async function loadHistory() {
+        try {
+            const response = await fetch(`${API_BASE}/redemptions/user/${currentUser.id}`);
+            const data = await response.json();
+
+            if (data.success && Array.isArray(data.data)) {
+                const history = data.data;
+                const container = document.getElementById('historyContainer');
+                const noMessage = document.getElementById('noHistoryMessage');
+
+                if (history.length === 0) {
+                    container.innerHTML = '';
+                    noMessage.style.display = 'block';
+                    return;
                 }
-            });
-        }
 
-        // Load history
-        async function loadHistory() {
-            try {
-                const response = await fetch(`${API_BASE}/redemptions/user/${currentUser.id}`);
-                const data = await response.json();
+                noMessage.style.display = 'none';
+                container.innerHTML = history.map(item => {
+                    const date = new Date(item.redemptionDate);
+                    const formattedDate = date.toLocaleDateString('de-DE') + ' ' + date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
 
-                if (data.success && Array.isArray(data.data)) {
-                    const history = data.data;
-                    const container = document.getElementById('historyContainer');
-                    const noMessage = document.getElementById('noHistoryMessage');
-
-                    if (history.length === 0) {
-                        container.innerHTML = '';
-                        noMessage.style.display = 'block';
-                        return;
-                    }
-
-                    noMessage.style.display = 'none';
-                    container.innerHTML = history.map(item => {
-                        const date = new Date(item.redemptionDate);
-                        const formattedDate = date.toLocaleDateString('de-DE') + ' ' + date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-
-                        return `
+                    return `
                             <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background: #fafafa;">
                                 <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
                                     <div>
@@ -620,14 +620,14 @@
                                 </div>
                             </div>
                         `;
-                    }).join('');
-                }
-            } catch (error) {
-                console.error('Fehler beim Laden der Historie:', error);
-                document.getElementById('historyContainer').innerHTML = '<p style="text-align: center; color: #e74c3c;">Fehler beim Laden der Historie</p>';
+                }).join('');
             }
+        } catch (error) {
+            console.error('Fehler beim Laden der Historie:', error);
+            document.getElementById('historyContainer').innerHTML = '<p style="text-align: center; color: #e74c3c;">Fehler beim Laden der Historie</p>';
         }
-    </script>
+    }
+</script>
 </body>
 </html>
 

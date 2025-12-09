@@ -40,7 +40,7 @@ public class ProductService {
 
     public Product updateProduct(Long id, String name, String description, Integer pointsCost) {
         Product product = productRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Produkt nicht gefunden"));
+                .orElseThrow(() -> new IllegalArgumentException("Produkt nicht gefunden"));
 
         if (name != null && !name.trim().isEmpty()) {
             product.setName(name);
@@ -57,9 +57,8 @@ public class ProductService {
 
     public void deleteProduct(Long id) {
         Product product = productRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Produkt nicht gefunden"));
+                .orElseThrow(() -> new IllegalArgumentException("Produkt nicht gefunden"));
         product.setActive(false);
         productRepository.save(product);
     }
 }
-

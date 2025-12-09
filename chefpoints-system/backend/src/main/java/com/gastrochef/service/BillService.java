@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ public class BillService {
         Bill bill = new Bill();
         bill.setCode(generateUniqueCode());
         bill.setPoints(points);
-        bill.setRedeemed(false);
+        bill.setRedeemedBy(null);
 
         return billRepository.save(bill);
     }
