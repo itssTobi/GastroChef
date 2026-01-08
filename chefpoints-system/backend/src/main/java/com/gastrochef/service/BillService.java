@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -40,6 +41,7 @@ public class BillService {
 
         bill.setRedeemed(true);
         bill.setRedeemedBy(user);
+        bill.setRedeemedAt(LocalDateTime.now());
         billRepository.save(bill);
 
         userService.addPoints(userId, bill.getPoints());
@@ -50,6 +52,10 @@ public class BillService {
     public boolean validateCode(String code) {
         Optional<Bill> bill = billRepository.findByCode(code);
         return bill.isPresent() && !bill.get().getRedeemed();
+    }
+
+    public List<Bill> getUserRedeemedBills(Long userId) {
+        return billRepository.findByRedeemedByIdOrderByRedeemedAtDesc(userId);
     }
 
     private String generateUniqueCode() {

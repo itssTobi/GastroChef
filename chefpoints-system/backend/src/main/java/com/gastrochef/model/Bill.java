@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "bills")
@@ -27,4 +28,7 @@ public class Bill {
     @ManyToOne
     @JoinColumn(name = "redeemed_by_user_id")
     private User redeemedBy;
+
+    @Column
+    private LocalDateTime redeemedAt;
 }

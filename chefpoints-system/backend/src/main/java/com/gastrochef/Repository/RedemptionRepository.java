@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface RedemptionRepository extends JpaRepository<RedemptionHistory, Long> {
-    List<RedemptionHistory> findByUserId(Long userId);
+    List<RedemptionHistory> findByUserIdOrderByRedemptionDateDesc(Long userId);
 }
 

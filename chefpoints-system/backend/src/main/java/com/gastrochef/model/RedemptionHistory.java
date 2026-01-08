@@ -32,5 +32,8 @@ public class RedemptionHistory {
 
     @Column(nullable = false)
     private LocalDateTime redemptionDate;
+
+    @Column(nullable = true)
+    private LocalDateTime expirationDate;
 }
 

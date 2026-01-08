@@ -48,19 +48,26 @@ public class RedemptionService {
         // Einlösungscode generieren
         String redemptionCode = generateRedemptionCode();
 
+        // Einlösungsdatum und Ablaufdatum (2 Wochen)
+        LocalDateTime now = LocalDateTime.now();
+        // Normal ist der Code 2 Wochen lang gültig zum Testen auf eine Minute gesetzt
+        // LocalDateTime expirationDate = now.plusWeeks(2);
+       LocalDateTime expirationDate = now.plusMinutes(1);
+
         // Historie speichern
         RedemptionHistory history = new RedemptionHistory();
         history.setUser(user);
         history.setProduct(product);
         history.setPointsDeducted(pointsCost);
         history.setRedemptionCode(redemptionCode);
-        history.setRedemptionDate(LocalDateTime.now());
+        history.setRedemptionDate(now);
+        history.setExpirationDate(expirationDate);
 
         return redemptionRepository.save(history);
     }
 
     public List<RedemptionHistory> getUserRedemptionHistory(Long userId) {
-        return redemptionRepository.findByUserId(userId);
+        return redemptionRepository.findByUserIdOrderByRedemptionDateDesc(userId);
     }
 
     public RedemptionHistory getRedemptionById(Long id) {

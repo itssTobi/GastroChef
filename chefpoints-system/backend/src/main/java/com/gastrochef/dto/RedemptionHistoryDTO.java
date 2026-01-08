@@ -14,5 +14,7 @@ public class RedemptionHistoryDTO {
     private Integer pointsDeducted;
     private String redemptionCode;
     private LocalDateTime redemptionDate;
+    private LocalDateTime expirationDate;
+    private Boolean expired;
 }
 
