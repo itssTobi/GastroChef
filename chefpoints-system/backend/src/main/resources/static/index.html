@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #686868;
+            background: linear-gradient(to bottom, #e08527, #d4781e 40%, #4a4a4a);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -31,7 +31,7 @@
         }
 
         h1 {
-            color: #667eea;
+            color: #d4781e;
             text-align: center;
             margin-bottom: 30px;
         }
@@ -66,24 +66,25 @@
 
         input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #d4781e;
         }
 
         button {
             width: 100%;
             padding: 14px;
-            background: cornflowerblue;
+            background: #d4781e;
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background 0.2s;
         }
 
         button:hover {
             transform: translateY(-2px);
+            background: #b86518;
         }
 
         button:active {
@@ -92,7 +93,7 @@
 
         .link-btn {
             background: none;
-            color: #667eea;
+            color: #d4781e;
             text-decoration: underline;
             margin-top: 15px;
             font-size: 14px;
@@ -106,7 +107,7 @@
         .points-number {
             font-size: 72px;
             font-weight: bold;
-            color: #667eea;
+            color: #d4781e;
             margin: 20px 0;
         }
 
@@ -157,12 +158,12 @@
         }
 
         .tab-btn:hover {
-            color: #667eea;
+            color: #d4781e;
         }
 
         .tab-btn.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
+            color: #d4781e;
+            border-bottom-color: #d4781e;
         }
 
         .tab-content {

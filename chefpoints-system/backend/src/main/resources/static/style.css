@@ -52,7 +52,7 @@ header {
 }
 
 .points-card {
-    background-color: #e9f9e9;
+    background-color: #fde8d4;
     padding: 20px;
     border-radius: 12px;
     text-align: center;
@@ -100,7 +100,7 @@ header {
 }
 
 .positive {
-    color: #15b814;
+    color: #d4781e;
 }
 
 .negative {
@@ -123,7 +123,7 @@ header {
 
 .btn {
     width: 100%;
-    background-color: #15b814;
+    background-color: #d4781e;
     color: white;
     border: none;
     padding: 10px;
@@ -135,7 +135,7 @@ header {
 }
 
 .btn:hover {
-    background-color: #119b11;
+    background-color: #b86518;
 }
 
 .bottom-nav {
@@ -159,6 +159,6 @@ header {
 }
 
 .bottom-nav button.active {
-    color: #15b814;
+    color: #d4781e;
     font-weight: 600;
 }

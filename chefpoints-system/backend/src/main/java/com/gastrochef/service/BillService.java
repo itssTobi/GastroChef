@@ -65,4 +65,9 @@ public class BillService {
         } while (billRepository.existsByCode(code));
         return code;
     }
+
+    public List<Bill> getAllBills() {
+        return billRepository.findAll();
+    }
+
 }

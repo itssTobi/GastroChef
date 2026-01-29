@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/bills")
 @RequiredArgsConstructor
@@ -40,4 +42,11 @@ public class BillController {
             return ResponseEntity.ok(new ApiResponse(false, "Code ist ungültig oder bereits eingelöst", null));
         }
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<ApiResponse> getAllBills() {
+        List<Bill> bills = billService.getAllBills();
+        return ResponseEntity.ok(new ApiResponse(true, "Alle Rechnungscodes", bills));
+    }
+
 }
